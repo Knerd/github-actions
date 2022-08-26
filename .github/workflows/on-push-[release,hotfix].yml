@@ -5,9 +5,9 @@ on:
     branches: 
       - "release/**" 
       - "hotfix/**" 
-  pull_request:
-    branches:
-      - "release/**"
+  # pull_request:
+  #   branches:
+  #     - "release/**"
 
   workflow_dispatch:
 
@@ -17,6 +17,23 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
+        with:
+          tag-prefix: 'v'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Output Step'
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"
       - name: pull-request
         id: pr
         uses: repo-sync/pull-request@v2
