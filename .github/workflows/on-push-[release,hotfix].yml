@@ -1,5 +1,8 @@
 name: Create PR for Main 
 
+name: Create PR for Main 
+
+# Controls when the workflow will run
 on:
   push:
     branches: 
