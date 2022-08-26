@@ -47,3 +47,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "automated pr, feature/fix"
           pr_title: "[PR] Merge into develop"
+      - name: update-pull-request
+        uses: kt3k/update-pr-description@v1.0.1
+        with:
+          pr_body: ${{ steps.description.outputs.description }}
+          destination_branch: release
+          github_token: ${{ secrets.GITHUB_TOKEN }}
