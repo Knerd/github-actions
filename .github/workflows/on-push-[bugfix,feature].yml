@@ -51,5 +51,5 @@ jobs:
         uses: kt3k/update-pr-description@v1.0.1
         with:
           pr_body: ${{ steps.description.outputs.description }}
-          destination_branch: release
+          destination_branch: develop 
           github_token: ${{ secrets.GITHUB_TOKEN }}
