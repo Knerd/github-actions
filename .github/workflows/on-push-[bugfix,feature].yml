@@ -35,12 +35,11 @@ jobs:
           echo Building prject...
           npm run build
 
-  pull_request:
-    # The type of runner that the job will run on
+  create-pull-request:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - name: pull-request
         uses: repo-sync/pull-request@v2
         with:
