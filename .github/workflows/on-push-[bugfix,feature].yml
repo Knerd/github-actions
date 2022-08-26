@@ -41,6 +41,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: pull-request
+        id: pr
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: "develop"
@@ -50,6 +51,6 @@ jobs:
       - name: update-pull-request
         uses: kt3k/update-pr-description@v1.0.1
         with:
-          pr_body: ${{ steps.description.outputs.description }}
+          pr_body: ${{ steps.pr.outputs.description }}
           destination_branch: develop 
           github_token: ${{ secrets.GITHUB_TOKEN }}
