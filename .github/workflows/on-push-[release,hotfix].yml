@@ -18,25 +18,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Install Packages 
-        run: npm i 
-
-      # Runs a set of commands using the runners shell
-      - name: Build Project
-        run: |
-          echo Building prject...
-          npm run build
 
   create-pull-request:
     runs-on: ubuntu-latest
@@ -50,7 +31,7 @@ jobs:
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "automated pr, feature/fix"
-          pr_title: "[PR] Merge into develop"
+          pr_title: "🤖 Merge into main"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
       - name: update-pull-request
         uses: kt3k/update-pr-description@v1.0.1
