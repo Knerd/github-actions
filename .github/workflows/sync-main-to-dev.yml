@@ -2,9 +2,10 @@ name: Auto Merge main->develop
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+    
 jobs:
   build:
-    if: false
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
