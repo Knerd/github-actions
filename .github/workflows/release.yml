@@ -15,7 +15,10 @@ jobs:
         run: cat ./package.json
       - name: 🤖 'npm version minor'
         id: version-bump
-        run: npm version minor 
+        run: |
+          git config --global user.email "bot@muuvlabs.com"
+          git config --global user.name "🤖DevOpsBot"
+          npm version minor 
       - name: 🤖 'cat package.json'
         run: cat ./package.json
       - name: 🤖 Create pull request
