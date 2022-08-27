@@ -1,25 +1,26 @@
-name: 🏭 Build main 
+name: 🏭 [BUILD]
 
 on:
   push:
     branches:
       - "main"
+      - "develop" 
+      - "release/**" 
   pull_request:
     branches:
       - "main"
+      - "develop"
 
   workflow_dispatch:
 
 jobs:
-  build:
+  build-main:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🏗 Checkout main 
+      - name: 🏗 Checkout branch 
         uses: actions/checkout@v3
       - name: 📦 Install Packages 
         run: npm i 
       - name: 🏭 Build Project
-        run: |
-          echo Building prject...
-          npm run build
+        run: npm run build

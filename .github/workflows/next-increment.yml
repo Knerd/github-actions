@@ -1,4 +1,4 @@
-name: 📦 [PR]  Release Product Increment 
+name: 🔖 [PR] Next Increment 
 
 on:
   workflow_dispatch:
@@ -21,9 +21,9 @@ jobs:
           echo "::set-output name=VERSION::$(npm version minor)" 
       - name: 📦 Create release branch 
         run: |
-          git checkout -b release/${{ steps.bump.outputs.VERSION }}
-          git push -u origin release/${{ steps.bump.outputs.VERSION }}
-          git push --tags
+          BRANCH=release/${{ steps.bump.outputs.VERSION }}
+          git checkout -b $BRANCH
+          git push -u origin $BRANCH
       - name: 🧐 Submit pull request
         id: pr
         uses: repo-sync/pull-request@v2

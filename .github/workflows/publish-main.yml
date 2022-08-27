@@ -1,0 +1,31 @@
+name: 📦 [PUBLISH] Package
+
+on:
+  push:
+    branches:
+      - "main"
+
+  workflow_dispatch:
+
+jobs:
+  build-main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🏗 Checkout main branch 
+        uses: actions/checkout@v3
+      - name: 🔧 Configure git
+        run: | 
+          git config --global user.email "devops+bot2022@muuvlabs.com"
+          git config --global user.name "🤖 DEVOPS-B0T-2022"
+      - name: 📦 Install Packages 
+        run: npm i 
+      - name: 🏭 Build Project
+        run: npm run build
+      - name: 🔖 Tag Release
+        run: | 
+          git tag v$(npm pkg get version)
+          git push --tags 
+      - name: 📦 Publish  
+        run: npm publish 
+ 
