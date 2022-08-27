@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  package-release:
     runs-on: ubuntu-latest
     steps:
       - name: 🔻 Check out repository code
@@ -20,7 +20,7 @@ jobs:
           git config --global user.name "🤖DevOpsBot"
           VERSION=$(npm version minor)
           git add package.json
-          git commit -m "🔖 Bump version $({ VERSION })"
+          git commit -m "🔖 Bump version $VERSION"
       - name: 📦 'cat package.json'
         run: cat ./package.json
       - name: 🤖 Create pull request
