@@ -15,6 +15,7 @@ jobs:
         run: | 
           git config --global user.email "devops+bot2022@muuvlabs.com"
           git config --global user.name "🤖 DEVOPS-B0T-2022"
+          git config --global push.default current
       - name: 🔖 'npm version minor'
         id: bump 
         run: |
