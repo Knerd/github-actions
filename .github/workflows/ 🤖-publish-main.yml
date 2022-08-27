@@ -30,7 +30,7 @@ jobs:
       - name: 🔖 Tag Release
         run: | 
           VERSION=$(npm pkg get version | sed 's/"//g')
-          git tag v$VERSION
+          git tag "v$VERSION"
           git push --tags 
       - name: 📦 Publish  
         run: npm publish 
