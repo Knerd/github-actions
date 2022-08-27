@@ -31,4 +31,5 @@ jobs:
           npm config set //npm.pkg.github.com/@knerd:_authToken ${NPM_TOKEN}
           npm publish --ignore-scripts
         env:
+          GITHUB_TOKEN: ${{secrets.NPM_TOKEN}}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
