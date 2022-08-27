@@ -1,5 +1,5 @@
 {
-  "name": "@knerd/github-actions",
+  "name": "@knerd/githubactions",
   "version": "0.28.0",
   "description": "Sandbox for github actions",
   "main": "src/index.js",
@@ -9,12 +9,9 @@
   },
   "author": "XopherDeeP",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "github:knerd/github-actions"
-  },
+  "repository": "https://github.com/Knerd/github-actions",
   "publishConfig": {
-    "@knerd:registry":"https://npm.pkg.github.com/"
+    "@knerd:registry": "https://npm.pkg.github.com/"
   },
   "bugs": {
     "url": "https://github.com/knerd/github-actions/issues"
@@ -22,5 +19,8 @@
   "homepage": "https://github.com/knerd/github-actions#readme",
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "vue": "^3.2.37"
+  }
 }
