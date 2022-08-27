@@ -18,10 +18,8 @@ jobs:
           git config --global user.email "bot@muuvlabs.com"
           git config --global user.name "🤖DevOpsBot"
       - name: 🔖 'npm version minor'
-        id: version-bump
-        run: VERSION=$(npm version minor)
-      - name: 👷 Commit version bump 
         run: |
+          VERSION=$(npm version minor)
           git add package.json
           git commit -m "🔖 Bump version $VERSION"
           git push
