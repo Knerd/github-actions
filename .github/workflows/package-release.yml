@@ -1,0 +1,33 @@
+name: 📦 [PR] Increment Product Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  package-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Check out repository code
+        uses: actions/checkout@v3
+        with:
+          ref: 'develop'
+      - name: 🔧 Configure git
+        run: | 
+          git config --global user.email "devops+bot2022@muuvlabs.com"
+          git config --global user.name "🤖 DEVOPS-B0T-2022"
+      - name: 🔖 'npm version minor'
+        id: bump 
+        run: |
+          echo "::set-output name=VERSION::$(npm version minor)" 
+      - name: 📦 Create Release Branch 
+          git checkout -b release/${{ steps.bump.outputs.VERSION }}
+          git push -u --tags
+      - name: 🤖 Create pull request
+        id: pr
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "automated pr, release"
+          pr_title: "📦 Merge 🔖 ${{ steps.bump.outputs.VERSION }} into main"
+          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
