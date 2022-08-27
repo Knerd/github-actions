@@ -24,8 +24,7 @@ jobs:
           echo $VERSION
           git push
           git push --tags
-          echo '::set-output name=VERSION::$VERSION'
-      - name: Output
+          echo "::set-output name=VERSION::${VERSION}" 
       - name: 📦 'cat package.json'
         run: cat ./package.json
       - name: 🤖 Create pull request
