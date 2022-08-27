@@ -1,5 +1,5 @@
 {
-  "name": "github-actions",
+  "name": "@knerd/github-actions",
   "version": "0.21.0",
   "description": "Sandbox for github actions",
   "main": "src/index.js",
