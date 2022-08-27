@@ -1,9 +1,7 @@
 name: 🤖 Auto bump version and create release PR from develop
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
 
 jobs:
   release:
