@@ -35,15 +35,6 @@ jobs:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
         run: echo "new tag $NEW_TAG"
       - name: pull-request
-        id: pr
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "automated pr, feature/fix"
-          pr_title: "🤖 Merge into main"
-          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
-      - name: pull-request
         id: pr2
         uses: repo-sync/pull-request@v2
         with:
@@ -51,4 +42,13 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "automated pr, feature/fix"
           pr_title: "🤖 Back merge into develop"
+          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
+      - name: pull-request
+        id: pr
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "automated pr, feature/fix"
+          pr_title: "🤖 Merge into main"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
