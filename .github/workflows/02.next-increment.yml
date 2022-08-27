@@ -1,4 +1,4 @@
-name: 🔖 [PR] Next Increment 
+name: 2.🔖 [PR] Next Increment 
 
 on:
   workflow_dispatch:

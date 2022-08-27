@@ -1,9 +1,9 @@
-name: 🐛 [PR] bugfix > develop
+name: 1.✨ [PR] feature > develop
 
 on:
   push:
     branches: 
-      - "bugfix/**" 
+      - "feature/**" 
 
   workflow_dispatch:
 

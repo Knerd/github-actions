@@ -1,9 +1,8 @@
-name: 🏭 [BUILD]
+name: X.🏭 [BUILD]
 
 on:
   push:
     branches:
-      - "main"
       - "develop" 
       - "release/**" 
   pull_request:
