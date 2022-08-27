@@ -31,7 +31,7 @@ jobs:
         id: pr
         uses: repo-sync/pull-request@v2
         with:
-          destination_branch: "develop"
+          destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "automated pr, feature/fix"
           pr_title: "📦 Merge 🔖 ${{ steps.bump.outputs.VERSION }} into main"
