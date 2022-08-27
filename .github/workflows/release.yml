@@ -19,9 +19,7 @@ jobs:
           git config --global user.name "🤖DevOpsBot"
       - name: 🔖 'npm version minor'
         run: |
-          VERSION=$(npm version minor)
-          git add package.json
-          git commit -m "🔖 Bump version $VERSION"
+          npm version minor
           git push
       - name: 📦 'cat package.json'
         run: cat ./package.json
