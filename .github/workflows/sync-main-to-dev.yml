@@ -1,4 +1,4 @@
-name: Auto Merge main->develop
+name: ⏩ Fast Forward develop
 on:
   push:
     branches: [ main ]
@@ -8,14 +8,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: 🏗 Checkout main
       uses: actions/checkout@v1
-
-    - name: Merge main->develop
+    - name: ⏩ Fast Forward develop
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/knerd/github-actions
+        # git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/knerd/github-actions
         git config --global user.email "devops+bot2022@muuvlabs.com"
         git config --global user.name "🤖 DEVOPS-B0T-2022"
         git fetch origin develop 
