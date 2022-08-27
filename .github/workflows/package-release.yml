@@ -1,4 +1,4 @@
-name: 📦 [PR] Increment Product Release
+name: 📦 [PR] Product Release
 
 on:
   workflow_dispatch:
