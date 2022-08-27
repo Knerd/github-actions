@@ -25,10 +25,6 @@ jobs:
           git push
           git push --tags
           echo '::set-output name=VERSION::$VERSION'
-      - name: Set selected color
-        run: echo '::set-output name=SELECTED_COLOR::green'
-      - name: Get color
-        run: echo "The selected color is "
       - name: 📦 'cat package.json'
         run: cat ./package.json
       - name: 🤖 Create pull request
