@@ -1,4 +1,4 @@
-name: 📦 Package Release PR
+name: 📦 [PR] Release Package 
 
 on:
   workflow_dispatch:
