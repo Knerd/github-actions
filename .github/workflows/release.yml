@@ -18,7 +18,9 @@ jobs:
         run: |
           git config --global user.email "bot@muuvlabs.com"
           git config --global user.name "🤖DevOpsBot"
-          npm version minor 
+          VERSION=$(npm version minor)
+          git add package.json
+          git commit -m "🔖 Bump version $({ VERSION })"
       - name: 📦 'cat package.json'
         run: cat ./package.json
       - name: 🤖 Create pull request
