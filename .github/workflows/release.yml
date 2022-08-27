@@ -1,4 +1,4 @@
-name: 🤖 Auto bump version and create release PR from develop
+name: 📦 Package Release PR
 
 on:
   workflow_dispatch:
@@ -7,22 +7,26 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: 🤖 Check out repository code
+      - name: 🔻 Check out repository code
         uses: actions/checkout@v2
         with:
           ref: 'develop'
-      - name: 🤖 'cat package.json'
+      - name: 📦 'cat package.json'
         run: cat ./package.json
-      - name: 🤖 'npm version minor'
+      - name: 🔖 'npm version minor'
         id: version-bump
         run: |
           git config --global user.email "bot@muuvlabs.com"
           git config --global user.name "🤖DevOpsBot"
           npm version minor 
-      - name: 🤖 'cat package.json'
+      - name: 📦 'cat package.json'
         run: cat ./package.json
       - name: 🤖 Create pull request
         id: pr
         uses: repo-sync/pull-request@v2
         with:
-          body: ${{steps.github_release.outputs.changelog}}
+          destination_branch: "develop"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "automated pr, feature/fix"
+          pr_title: "🤖 Merge into develop"
+          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
