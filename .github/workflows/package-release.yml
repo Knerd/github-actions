@@ -1,4 +1,4 @@
-name: "📦 [PR] Product Release"
+name: 📦 [PR] Product Release
 
 on:
   workflow_dispatch:
@@ -20,6 +20,7 @@ jobs:
         run: |
           echo "::set-output name=VERSION::$(npm version minor)" 
       - name: 📦 Create Release Branch 
+        run: |
           git checkout -b release/${{ steps.bump.outputs.VERSION }}
           git push -u --tags
       - name: 🤖 Create pull request
