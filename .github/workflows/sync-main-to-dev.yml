@@ -1,4 +1,4 @@
-name: ⏩ Fast Forward develop
+name: ⏩ [FF] develop branch
 on:
   push:
     branches: 
