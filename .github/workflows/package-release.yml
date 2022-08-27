@@ -7,7 +7,7 @@ jobs:
   package-release:
     runs-on: ubuntu-latest
     steps:
-      - name: 🏗 Check out repository code
+      - name: 🏗 Check out develop code
         uses: actions/checkout@v3
         with:
           ref: 'develop'
@@ -25,6 +25,10 @@ jobs:
           git checkout -b release/${{ steps.bump.outputs.VERSION }}
           git push -u origin release/${{ steps.bump.outputs.VERSION }}
           git push --tags
+      - name: 🏗 Check out release code
+        uses: actions/checkout@v3
+        with:
+          ref: release/${{ steps.bump.outputs.VERSION }}
       - name: 🤖 Create pull request
         id: pr
         uses: repo-sync/pull-request@v2
