@@ -23,7 +23,6 @@ jobs:
       - name: 📦 Create Release Branch 
         run: |
           git checkout -b release/${{ steps.bump.outputs.VERSION }}
-          git pull --rebase
           git push -u origin release/${{ steps.bump.outputs.VERSION }}
           git push --tags
       - name: 🤖 Create pull request
