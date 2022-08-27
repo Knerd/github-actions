@@ -7,17 +7,20 @@
     "build": "npm i",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Knerd/github-actions.git"
-  },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com/@knerd"
-  },
   "author": "XopherDeeP",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Knerd/github-actions/issues"
+  "repository": {
+    "type": "git",
+    "url": "github:knerd/github-actions"
   },
-  "homepage": "https://github.com/Knerd/github-actions#readme"
+  "publishConfig": {
+    "@knerd:registry":"https://npm.pkg.github.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/knerd/github-actions/issues"
+  },
+  "homepage": "https://github.com/knerd/github-actions#readme",
+  "files": [
+    "dist"
+  ]
 }
