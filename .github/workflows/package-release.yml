@@ -1,4 +1,4 @@
-name: "[PR] Product Release"
+name: "📦 [PR] Product Release"
 
 on:
   workflow_dispatch:
