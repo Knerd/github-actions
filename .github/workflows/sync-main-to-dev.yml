@@ -1,0 +1,23 @@
+name: Auto Merge main->develop
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Merge main->develop
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/knerd/github-actions
+        git config --global user.email "devops+bot2022@muuvlabs.com"
+        git config --global user.name "🤖 DEVOPS-B0T-2022"
+        git fetch origin develop 
+        git checkout develop
+        git merge origin/main --ff-only
+        git push origin develop 
