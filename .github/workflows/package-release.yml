@@ -23,16 +23,14 @@ jobs:
       - name: 📦 Create Release Branch 
         run: |
           git checkout -b release/${{ steps.bump.outputs.VERSION }}
+          git pull --rebase
           git push -u origin release/${{ steps.bump.outputs.VERSION }}
           git push --tags
-      - name: 🏗 Check out release code
-        uses: actions/checkout@v3
-        with:
-          ref: release/${{ steps.bump.outputs.VERSION }}
       - name: 🤖 Create pull request
         id: pr
         uses: repo-sync/pull-request@v2
         with:
+          source_branch: release/${{ steps.bump.outputs.VERSION }}
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "automated pr, release"
