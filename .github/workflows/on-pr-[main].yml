@@ -1,4 +1,4 @@
-name: 🏭 Build Main 
+name: 🏭 Build main 
 
 on:
   push:
@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: 🏗 actions/checkout@v3
+      - name: 🏗 Checkout main 
+        uses: actions/checkout@v3
       - name: 📦 Install Packages 
         run: npm i 
       - name: 🏭 Build Project
