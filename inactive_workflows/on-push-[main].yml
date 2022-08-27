@@ -1,0 +1,24 @@
+name: Bump Version, Build & Publish Main
+
+on:
+  push:
+    branches:
+      - "main"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Packages 
+        run: npm i 
+
+      - name: Build Project
+        run: |
+          echo Building prject...
+          npm run build
+
