@@ -13,12 +13,15 @@ jobs:
           ref: 'develop'
       - name: 📦 'cat package.json'
         run: cat ./package.json
-      - name: 🔖 'npm version minor'
-        id: version-bump
-        run: |
+      - name: 🔧 Configure git
+        run: | 
           git config --global user.email "bot@muuvlabs.com"
           git config --global user.name "🤖DevOpsBot"
-          VERSION=$(npm version minor)
+      - name: 🔖 'npm version minor'
+        id: version-bump
+        run: VERSION=$(npm version minor)
+      - name: 👷 Commit version bump 
+        run: |
           git add package.json
           git commit -m "🔖 Bump version $VERSION"
           git push
