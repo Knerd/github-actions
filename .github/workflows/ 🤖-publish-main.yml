@@ -27,10 +27,8 @@ jobs:
       - name: 🏭 Build Project
         run: npm run build
       - name: 📦 Publish  
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm config set //npm.pkg.github.com/@knerd:_authToken ${NPM_TOKEN}
+          npm publish --ignore-scripts
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
- 
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
