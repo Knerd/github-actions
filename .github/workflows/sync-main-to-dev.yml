@@ -1,7 +1,8 @@
 name: ⏩ Fast Forward develop
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main 
   workflow_dispatch:
     
 jobs:
@@ -14,7 +15,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/knerd/github-actions
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/knerd/github-actions
         git config --global user.email "devops+bot2022@muuvlabs.com"
         git config --global user.name "🤖 DEVOPS-B0T-2022"
         git fetch origin develop 
