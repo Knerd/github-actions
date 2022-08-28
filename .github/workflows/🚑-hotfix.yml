@@ -1,0 +1,36 @@
+name: 👆 [PR] Hotfix/Patch 🚑 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  next-increment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Check out develop branch 
+        uses: actions/checkout@v3
+        with:
+          ref: 'develop'
+      - name: 🔧 Configure git
+        run: | 
+          git config --global user.email "devops+bot2022@muuvlabs.com"
+          git config --global user.name "🤖 DEVOPS-B0T-2022"
+      - name: 🔖 Bump version 
+        id: bump 
+        run: |
+          echo "::set-output name=VERSION::$(npm version patch)" 
+      - name: 📦 Create hotfix branch 
+        run: |
+          BRANCH=hotfix/${{ steps.bump.outputs.VERSION }}
+          git checkout -b $BRANCH
+          git push -u origin $BRANCH
+      - name: 🧐 Submit pull request
+        id: pr
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: hotfix/${{ steps.bump.outputs.VERSION }}
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_label: "automated pr, release"
+          pr_title: "🚑 ${{ steps.bump.outputs.VERSION }} 🔖"
+          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  

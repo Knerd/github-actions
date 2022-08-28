@@ -1,5 +1,5 @@
 {
-  "name": "@knerd/githubactions",
+  "name": "@knerd/github-actions",
   "version": "0.28.0",
   "description": "Sandbox for github actions",
   "main": "src/index.js",
@@ -9,8 +9,9 @@
   },
   "author": "XopherDeeP",
   "license": "ISC",
-  "repository": "https://github.com/Knerd/github-actions",
+  "repository": "https://github.com/knerd/github-actions",
   "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
     "@knerd:registry": "https://npm.pkg.github.com/"
   },
   "bugs": {
