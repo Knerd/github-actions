@@ -13,6 +13,10 @@ jobs:
           ref: 'main'
       - name: 🏭 Build
         uses: ./.github/workflows/build
+
+
+
+
       - name: 🔧 Configure git
         run: | 
           git config --global user.email "devops+bot2022@muuvlabs.com"

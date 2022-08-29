@@ -4,12 +4,14 @@ on:
   workflow_call:
   workflow_dispatch:
   push: 
-    - main
-    - develop
+    branches:
+      - main
+      - develop
   pull-request: 
-    - main
-    - develop
-    - release/** 
+    branches:
+      - main
+      - develop
+      - release/** 
 
 jobs:
   build:
