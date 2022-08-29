@@ -5,11 +5,12 @@ on:
     branches:
       - main
       - develop
-  pull_equest: 
+  pull_request: 
     branches:
       - main
       - develop
       - "release/**"
+  workflow_call:
   workflow_dispatch:
 
 jobs:
