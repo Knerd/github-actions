@@ -1,25 +1,25 @@
 {
-  "name": "@knerd/workflows",
+  "name": "@majora-d/workflows",
   "version": "0.28.3",
-  "description": "Sandbox for github actions",
+  "description": "Sandbox for actions",
   "main": "src/index.js",
   "scripts": {
     "build": "npm ci",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": "XopherDeeP",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/knerd/workflows.git"
+    "url": "git+https://github.com/majora-d/workflows.git"
   },
   "publishConfig": {
-    "@knerd:registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
-    "url": "https://github.com/knerd/workflows/issues"
+    "url": "https://github.com/majora-d/workflows/issues"
   },
-  "homepage": "https://github.com/knerd/workflows#readme",
+  "homepage": "https://github.com/marjoa-d/workflows#readme",
   "files": [
     "dist"
   ],

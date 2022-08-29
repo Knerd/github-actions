@@ -1,16 +1,17 @@
-name: 👆 [PR] Hotfix/Patch 🚑 
+name: 👆 [PR] Hotfix 🚑 
 
 on:
   workflow_dispatch:
 
 jobs:
-  hotfix-patch:
+  dispatch-hotfix:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Check out develop branch 
         uses: actions/checkout@v3
         with:
           ref: 'main'
+      - uses: ./.github/workflows/build.yml
       - name: 🔧 Configure git
         run: | 
           git config --global user.email "devops+bot2022@muuvlabs.com"
@@ -31,6 +32,6 @@ jobs:
           source_branch: hotfix/${{ steps.bump.outputs.VERSION }}
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "automated pr, release"
-          pr_title: "🚑 ${{ steps.bump.outputs.VERSION }} 🔖"
+          pr_label: "automated pr, hotfix"
+          pr_title: " 🔖 ${{ steps.bump.outputs.VERSION }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
