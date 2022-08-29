@@ -4,17 +4,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: 🏭 Build
+        uses: ./build
+
   dispatch-hotfix-branch:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Check out develop branch 
         uses: actions/checkout@v3
         with:
           ref: 'main'
-      - name: 🏭 Build
-        with:
-          ref: 'main'
-        uses: ./build
       - name: 🔧 Configure git
         run: | 
           git config --global user.email "devops+bot2022@muuvlabs.com"
