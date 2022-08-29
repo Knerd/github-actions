@@ -34,5 +34,5 @@ jobs:
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "hotfix"
-          pr_title: " 🔖 ${{ steps.bump.outputs.VERSION }} 🚑"
+          pr_title: " 🔖 ${{ steps.bump.outputs.HOTFIX }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
