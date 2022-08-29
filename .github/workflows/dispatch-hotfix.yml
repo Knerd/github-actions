@@ -34,5 +34,6 @@ jobs:
           pr_label: "automated pr, hotfix"
           pr_title: " 🔖 ${{ steps.bump.outputs.VERSION }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
-  build: 
+  workflow: 
+    needs: dispatch-hotfix-branch
     uses: ./.github/workflows/build.yml

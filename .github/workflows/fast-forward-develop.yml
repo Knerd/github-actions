@@ -23,3 +23,6 @@ jobs:
         git pull --rebase
         git merge origin/main --ff-only || git merge origin/main
         git push origin develop 
+  workflow: 
+    needs: dispatch-hotfix-branch
+    uses: ./.github/workflows/build.yml

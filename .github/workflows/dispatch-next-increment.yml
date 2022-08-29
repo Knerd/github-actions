@@ -4,13 +4,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build: 
-    runs-on: ubuntu-latest
-    steps: 
-      - name: 🏭 Build
-        uses: ./build
+  workflow: 
+    uses: ./.github/workflows/build.yml
   next-increment:
-    needs: build
+    needs: workflow 
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Check out develop branch 
