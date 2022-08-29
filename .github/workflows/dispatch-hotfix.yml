@@ -12,7 +12,9 @@ jobs:
         with:
           ref: 'main'
       - name: 🏭 Build
-        uses: ./build.yml
+        with:
+          ref: 'main'
+        uses: ./build
       - name: 🔧 Configure git
         run: | 
           git config --global user.email "devops+bot2022@muuvlabs.com"

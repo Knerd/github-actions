@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: 🏗 Checkout branch 
-        uses: actions/checkout@v3
+        uses: actions/checkout@v1
       - name: 📦 Install Packages 
         run: npm ci 
       - name: 🩻 Test 
