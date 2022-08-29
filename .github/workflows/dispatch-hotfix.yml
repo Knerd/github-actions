@@ -1,17 +1,10 @@
-name: 👆 [PR] Hotfix 🚑 
+name: 🚑 Dispatch hotfix branch
 
 on:
   workflow_dispatch:
 
 jobs:
-  build: 
-    runs-on: ubuntu-latest
-    steps: 
-      - name: 🏭 Build
-        uses: ./build
-
   dispatch-hotfix-branch:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Check out develop branch 
@@ -41,3 +34,9 @@ jobs:
           pr_label: "automated pr, hotfix"
           pr_title: " 🔖 ${{ steps.bump.outputs.VERSION }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+  build: 
+    needs: dispatch-hotfix-branch
+    runs-on: ubuntu-latest
+    steps: 
+      - name: 🏭 Build
+        uses: ./build
