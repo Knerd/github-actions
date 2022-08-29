@@ -5,11 +5,14 @@ on:
     branches:
       - main
       - develop
+      - "release/**"
+      - "hotfix/**"
   pull_request: 
     branches:
       - main
       - develop
       - "release/**"
+      - "hotfix/**"
   workflow_call:
   workflow_dispatch:
 
