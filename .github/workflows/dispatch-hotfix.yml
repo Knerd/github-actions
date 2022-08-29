@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  dispatch-hotfix-branch:
+  dispatch-branch:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Check out develop branch 
@@ -34,6 +34,6 @@ jobs:
           pr_label: "automated pr, hotfix"
           pr_title: " 🔖 ${{ steps.bump.outputs.VERSION }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
-  workflow: 
-    needs: dispatch-hotfix-branch
+  hotfix: 
+    needs: dispatch-branch
     uses: ./.github/workflows/build.yml
