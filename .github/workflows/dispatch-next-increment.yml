@@ -32,6 +32,6 @@ jobs:
           source_branch: ${{ steps.bump.outputs.RELEASE }}
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "automated pr, release"
+          pr_label: "release"
           pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
