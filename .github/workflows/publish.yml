@@ -1,10 +1,7 @@
 name: 🤖 [PUBLISH] Package 📦 
 
 on:
-  push:
-    branches:
-      - "main"
-
+  workflow_call:
   workflow_dispatch:
 
 jobs:
@@ -14,16 +11,12 @@ jobs:
     steps:
       - name: 🏗 Checkout main branch 
         uses: actions/checkout@v3
-      - name: 🔧 Configure git
-        run: | 
-          git config --global user.email "devops+bot2022@muuvlabs.com"
-          git config --global user.name "🤖 DEVOPS-B0T-2022"
       - name: ☕ Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
           registry-url: 'https://npm.pkg.github.com'
-          scope: "@knerd"
+          scope: "@majora-d"
       - name: 📦 Install dependencies 
         run: npm ci 
       - name: 🏭 Build Project
