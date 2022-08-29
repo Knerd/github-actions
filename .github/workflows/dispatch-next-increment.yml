@@ -17,8 +17,10 @@ jobs:
           git config --global user.name "🤖 DEVOPS-B0T-2022"
       - name: 🔖 Bump version 
         id: bump 
-        run: |
-          echo "::set-output name=RELEASE::release/$(npm version minor)" 
+        run: | 
+          npm version minor
+          VERSION=$(node -p "require('./package.json').version")
+          echo "::set-output name=RELEASE::release/$VERSION" 
       - name: 📦 Create release branch 
         run: |
           RELEASE=${{ steps.bump.outputs.RELEASE }}

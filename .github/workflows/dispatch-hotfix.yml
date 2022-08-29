@@ -18,17 +18,19 @@ jobs:
       - name: 🔖 Bump version 
         id: bump 
         run: |
-          echo "::set-output name=VERSION::$(npm version patch)" 
+          npm version patch
+          VERSION=$(node -p "require('./package.json').version")
+          echo "::set-output name=HOTFIX::hotfix/$VERSION" 
       - name: 🚑 Create hotfix branch 
         run: |
-          BRANCH=hotfix/${{ steps.bump.outputs.VERSION }}
-          git checkout -b $BRANCH
-          git push -u origin $BRANCH
+          HOTFIX=${{ steps.bump.outputs.HOTFIX }}
+          git checkout -b $HOTFIX
+          git push -u origin $HOTFIX
       - name: 🧐 Submit pull request
         id: pr
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: hotfix/${{ steps.bump.outputs.VERSION }}
+          source_branch: ${{ steps.bump.outputs.HOTFIX }}
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "hotfix"
