@@ -1,12 +1,10 @@
-name: 👆 [PR] Next Increment 🔖 
+name: 🔖 Dispatch minor increment 
 
 on:
   workflow_dispatch:
 
 jobs:
-  workflow: 
-    uses: ./.github/workflows/build.yml
-  next-increment:
+  dispatch-branch:
     needs: workflow 
     runs-on: ubuntu-latest
     steps:
@@ -37,3 +35,6 @@ jobs:
           pr_label: "automated pr, release"
           pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+  release: 
+    needs: dispatch-branch
+    uses: ./.github/workflows/build.yml
