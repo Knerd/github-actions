@@ -35,4 +35,4 @@ jobs:
           pr_title: " 🔖 ${{ steps.bump.outputs.VERSION }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
   build: 
-    uses: ./build
+    uses: ./.github/workflows/build.yml
