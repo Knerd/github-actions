@@ -1,14 +1,13 @@
-name: 📦 Publish Release 
+name: 🚀 Deploy Production 🎬
 
 on:
   workflow_call:
   workflow_dispatch:
-  release:
-    types: [published]
 
 jobs:
   publish-package:
     runs-on: ubuntu-latest
+
     steps:
       - name: 🏗 Checkout main branch 
         uses: actions/checkout@v3

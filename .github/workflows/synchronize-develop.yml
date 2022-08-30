@@ -1,4 +1,4 @@
-name: 🤖 [FF] develop branch ⏩ 
+name: ⏩ Synchronize develop 
 on:
   push:
     branches: 
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     
 jobs:
-  fast-forward-develop:
+  synchronize-develop:
     runs-on: ubuntu-latest
     steps:
     - name: 🏗 Checkout main
@@ -20,6 +20,5 @@ jobs:
         git config --global user.name "🤖 DEVOPS-B0T-2022"
         git fetch origin develop 
         git checkout develop
-        git pull --rebase
         git merge origin/main --ff-only || git merge origin/main
         git push origin develop 

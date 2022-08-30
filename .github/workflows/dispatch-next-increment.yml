@@ -1,7 +1,10 @@
-name: 🔖 Dispatch minor increment 
+name: 🔖 Dispatch next minor release 
 
 on:
   workflow_dispatch:
+  schedule:
+    - '0 0 */13 * *'
+    - '0 0 */28 * *'
 
 jobs:
   dispatch-branch:
