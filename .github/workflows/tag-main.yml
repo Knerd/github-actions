@@ -12,7 +12,7 @@ jobs:
     uses: ./.github/workflows/build.yml
 
   tag:
-    needs: build 
+    needs: main 
     runs-on: ubuntu-latest
 
     steps:
