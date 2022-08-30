@@ -24,6 +24,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "release.tar.gz"
-          tag: ${{ steps.version.outputs.VERSION }}
+          tag: v${{ steps.version.outputs.VERSION }}
           body: ${{ steps.tag-data.outputs.git-tag-annotation }}
           token: ${{ secrets.GITHUB_TOKEN }}
