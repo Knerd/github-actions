@@ -27,6 +27,6 @@ jobs:
           git tag v$(node -p "require('./package.json').version")
           git push --tags 
 
-  announce-release: 
-    needs: tag
-    uses: ./.github/workflows/announce-release.yml
+  # announce-release: 
+  #   needs: tag
+  #   uses: ./.github/workflows/announce-release.yml
