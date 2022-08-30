@@ -33,6 +33,14 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  # announce-release: 
-  #   needs: tag
-  #   uses: ./.github/workflows/announce-release.yml
+  announce-release: 
+    needs: tag
+    uses: ./.github/workflows/announce-release.yml
+
+  publish: 
+    needs: announce-release 
+    uses: ./.github/workflows/publish.yml
+
+  deploy: 
+    needs: publish 
+    uses: ./.github/workflows/deploy.yml
