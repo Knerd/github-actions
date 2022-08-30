@@ -10,18 +10,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: " 📑 Refresh tags"
-        id: tag
-        run: |
-          git fetch --tags --force # Is currently required for v3 due to https://github.com/actions/checkout/issues/290
-          git checkout v$(node -p "require('./package.json').version")
-      - uses: ericcornelissen/git-tag-annotation-action@v2
+        uses: ericcornelissen/git-tag-annotation-action@v2
         id: tag-data
       - name:  📣 Create GitHub release
-        uses: Roang-zero1/github-create-release-action@v2
+        uses: ncipollo/release-action@v1
         with:
-          version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
-          release_text: ${{ steps.tag-data.outputs.git-tag-annotation }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # artifacts: "release.tar.gz,foo/*.txt"
+          body: ${{ steps.tag-data.outputs.git-tag-annotation }}
+          token: ${{ secrets.GITHUB_TOKEN }}
