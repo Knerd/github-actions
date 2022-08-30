@@ -14,9 +14,16 @@ jobs:
       - name: " 📑 Refresh tags"
         uses: ericcornelissen/git-tag-annotation-action@v2
         id: tag-data
+      - name: 🔖 Get version 
+        id: version 
+        run: |
+          git checkout main
+          VERSION=$(node -p "require('./package.json').version")
+          echo "::set-output name=VERSION::$VERSION" 
       - name:  📣 Create GitHub release
         uses: ncipollo/release-action@v1
         with:
-          # artifacts: "release.tar.gz,foo/*.txt"
+          artifacts: "release.tar.gz"
+          tag: ${{ steps.version.outputs.VERSION }}
           body: ${{ steps.tag-data.outputs.git-tag-annotation }}
           token: ${{ secrets.GITHUB_TOKEN }}
