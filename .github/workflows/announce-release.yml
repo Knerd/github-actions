@@ -1,6 +1,7 @@
 name: 📣 Announce Release
 
 on:
+  workflow_call:
   push:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
