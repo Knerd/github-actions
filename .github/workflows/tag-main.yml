@@ -34,9 +34,8 @@ jobs:
     uses: ./.github/workflows/announce-release.yml
 
   publish: 
-    needs: announce-release 
     uses: ./.github/workflows/publish.yml
 
   deploy: 
-    needs: publish 
+    needs: announce-release 
     uses: ./.github/workflows/deploy.yml
