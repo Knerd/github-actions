@@ -1,9 +1,8 @@
-name: 🤖 [BUILD] 🏭 
+name: 🏭 Build
 
 on: 
   push: 
     branches:
-      - main
       - develop
       - "release/**"
       - "hotfix/**"

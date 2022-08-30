@@ -1,4 +1,4 @@
-name: 🤖 [TAG] Build 🔖 
+name: 🔖 Tag main 
 
 on:
   push:
