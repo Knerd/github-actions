@@ -26,15 +26,15 @@ jobs:
           HOTFIX=${{ steps.bump.outputs.HOTFIX }}
           git checkout -b $HOTFIX
           git push -u origin $HOTFIX
-      - name: 🧐 Submit pull request
-        id: pr
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: ${{ steps.bump.outputs.HOTFIX }}
-          destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "hotfix"
-          pr_title: " 🔖 ${{ steps.bump.outputs.HOTFIX }} 🚑"
-          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+      # - name: 🧐 Submit pull request
+      #   id: pr
+      #   uses: repo-sync/pull-request@v2
+      #   with:
+      #     source_branch: ${{ steps.bump.outputs.HOTFIX }}
+      #     destination_branch: "main"
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     pr_label: "hotfix"
+      #     pr_title: " 🔖 ${{ steps.bump.outputs.HOTFIX }} 🚑"
+      #     pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
   hotfix: 
     uses: ./.github/workflows/build.yml
