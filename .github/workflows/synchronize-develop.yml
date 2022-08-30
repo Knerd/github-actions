@@ -1,4 +1,4 @@
-name: ⏩ Synchronize develop 
+name: 🤖⏩ Synchronize develop 
 on:
   push:
     branches: 
