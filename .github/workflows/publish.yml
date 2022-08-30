@@ -1,4 +1,4 @@
-name: 📦 Publish Release 
+name: 🤖📦 Publish Release 
 
 on:
   workflow_call:

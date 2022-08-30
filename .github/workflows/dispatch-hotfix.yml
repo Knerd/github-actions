@@ -1,4 +1,4 @@
-name: 🚑 Dispatch hotfix branch
+name: 👆🚑 Dispatch hotfix branch
 
 on:
   workflow_dispatch:

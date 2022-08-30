@@ -1,4 +1,4 @@
-name: 🐛 [PR] bugfix > develop
+name: 🤖🐛 [PR] bugfix > develop
 
 on:
   push:
