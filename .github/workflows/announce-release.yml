@@ -7,17 +7,15 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
-  workflow: 
-    uses: ./.github/workflows/build.yml
-    
   release:
-    needs: workflow
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: " 📑 Refresh tags"
         id: tag
-        run: git fetch --tags --force # Is currently required for v3 due to https://github.com/actions/checkout/issues/290
+        run: |
+          git fetch --tags --force # Is currently required for v3 due to https://github.com/actions/checkout/issues/290
+          git checkout v$(node -p "require('./package.json').version")
       - uses: ericcornelissen/git-tag-annotation-action@v2
         id: tag-data
       - name:  📣 Create GitHub release
