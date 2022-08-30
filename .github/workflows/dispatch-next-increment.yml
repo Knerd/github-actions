@@ -39,3 +39,5 @@ jobs:
           pr_label: "release"
           pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+  next-increment: 
+    uses: ./.github/workflows/build.yml
