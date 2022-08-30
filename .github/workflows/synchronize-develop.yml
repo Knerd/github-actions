@@ -17,7 +17,7 @@ jobs:
       run: |
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
         git config --global user.email "devops+bot2022@muuvlabs.com"
-        git config --global user.name "🤖 DEVOPS-B0T-2022"
+        git config --global user.name "🤖 workflows[bot]2022"
         git fetch origin develop 
         git checkout develop
         git merge origin/main --ff-only || git merge origin/main
