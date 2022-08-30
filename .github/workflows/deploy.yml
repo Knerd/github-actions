@@ -1,4 +1,4 @@
-name: 🚀 Deploy Production 🎬
+name: 🤖🚀 Deploy Production 🎬
 
 on:
   workflow_call:
