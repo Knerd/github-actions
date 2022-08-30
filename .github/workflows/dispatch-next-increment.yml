@@ -3,8 +3,8 @@ name: 🔖 Dispatch next minor release
 on:
   workflow_dispatch:
   schedule:
-    - '0 0 */13 * *'
-    - '0 0 */28 * *'
+    - cron: '0 0 */13 * *'
+    - cron: '0 0 */28 * *'
 
 jobs:
   dispatch-branch:
