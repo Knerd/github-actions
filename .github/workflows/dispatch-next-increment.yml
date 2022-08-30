@@ -29,15 +29,15 @@ jobs:
           RELEASE=${{ steps.bump.outputs.RELEASE }}
           git checkout -b $RELEASE
           git push -u origin $RELEASE
-      - name: 🧐 Submit pull request
-        id: pr
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: ${{ steps.bump.outputs.RELEASE }}
-          destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "release"
-          pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
-          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+      # - name: 🧐 Submit pull request
+      #   id: pr
+      #   uses: repo-sync/pull-request@v2
+      #   with:
+      #     source_branch: ${{ steps.bump.outputs.RELEASE }}
+      #     destination_branch: "main"
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     pr_label: "release"
+      #     pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
+      #     pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
   next-increment: 
     uses: ./.github/workflows/build.yml
