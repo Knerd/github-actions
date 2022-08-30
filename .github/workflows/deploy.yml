@@ -5,25 +5,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish-package:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: 🏗 Checkout main branch 
         uses: actions/checkout@v3
-      - name: ☕ Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: "@majora-d"
-      - name: 📦 Install dependencies 
-        run: npm ci 
-      - name: 🏭 Build Project
-        run: npm run build
-      - name: 📦 Publish  
-        run: npm publish 
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: 🔐 Connect to environement 
+        run: |
+          echo "Connect to Production / Staging server"
+      - name: 🚀 Deploy latest code 
+        run: |
+          echo "Run deployment code..."
