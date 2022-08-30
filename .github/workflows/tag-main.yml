@@ -28,4 +28,5 @@ jobs:
           git push --tags 
 
   announce-release: 
+    needs: tag
     uses: ./.github/workflows/announce-release.yml
