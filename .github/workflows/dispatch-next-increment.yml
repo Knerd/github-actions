@@ -35,9 +35,11 @@ jobs:
         with:
           source_branch: ${{ steps.bump.outputs.RELEASE }}
           destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "release"
           pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+          github_token: ${{ secrets.GH_PA_TOKEN }}
+          # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
   next-increment: 
     uses: ./.github/workflows/build.yml
