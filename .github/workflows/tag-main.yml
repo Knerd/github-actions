@@ -32,10 +32,15 @@ jobs:
   announce-release: 
     needs: tag
     uses: ./.github/workflows/announce-release.yml
+    secrets: inherit
 
   publish: 
+    needs: tag 
     uses: ./.github/workflows/publish.yml
+    secrets: inherit
 
   deploy: 
-    needs: announce-release 
+    needs: publish 
     uses: ./.github/workflows/deploy.yml
+    secrets: inherit
+
