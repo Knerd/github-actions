@@ -38,5 +38,3 @@ jobs:
           github_token: ${{ secrets.GH_PA_TOKEN }}
           # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
           # github_token: ${{ secrets.GITHUB_TOKEN }}
-  hotfix: 
-    uses: ./.github/workflows/build.yml
