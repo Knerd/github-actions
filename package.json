@@ -1,5 +1,5 @@
 {
-  "name": "@majora-d/workflows",
+  "name": "@knerd/workflows",
   "version": "0.39.4",
   "description": "Sandbox for actions",
   "main": "src/index.js",
@@ -11,13 +11,13 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/majora-d/workflows.git"
+    "url": "git+https://github.com/knerd/workflows.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
-    "url": "https://github.com/majora-d/workflows/issues"
+    "url": "https://github.com/knerd/workflows/issues"
   },
   "homepage": "https://github.com/marjoa-d/workflows#readme",
   "files": [
