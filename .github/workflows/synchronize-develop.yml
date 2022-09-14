@@ -1,9 +1,5 @@
 name: 🤖⏩ Synchronize develop 
 on:
-  # workflow_run:
-  #   workflows: ['🤖🏭 Build']
-  #   types:
-  #     - completed
   workflow_call:
   workflow_dispatch:
     
