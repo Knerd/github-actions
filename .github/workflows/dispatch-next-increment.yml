@@ -3,8 +3,8 @@ name: 👆🔖 Dispatch next minor release
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 */13 * *'
-    - cron: '0 0 */28 * *'
+    # At 00:00 every Tuesday
+    - cron: '0 0 * * TUE'
 
 jobs:
   dispatch-branch:
@@ -29,15 +29,17 @@ jobs:
           RELEASE=${{ steps.bump.outputs.RELEASE }}
           git checkout -b $RELEASE
           git push -u origin $RELEASE
-      # - name: 🧐 Submit pull request
-      #   id: pr
-      #   uses: repo-sync/pull-request@v2
-      #   with:
-      #     source_branch: ${{ steps.bump.outputs.RELEASE }}
-      #     destination_branch: "main"
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     pr_label: "release"
-      #     pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
-      #     pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+      - name: 🧐 Submit pull request
+        id: pr
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ steps.bump.outputs.RELEASE }}
+          destination_branch: "main"
+          pr_label: "release"
+          pr_title: "🔖 ${{ steps.bump.outputs.RELEASE }} "
+          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+          github_token: ${{ secrets.GH_PA_TOKEN }}
+          # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
   next-increment: 
     uses: ./.github/workflows/build.yml

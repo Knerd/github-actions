@@ -13,8 +13,8 @@ jobs:
           ref: 'main'
       - name: 🔧 Configure git
         run: | 
-          git config --global user.email "devops+bot2022@muuvlabs.com"
-          git config --global user.name "🤖 workflows[bot]2022"
+          git config --global user.email "devops+bot@muuvlabs.com"
+          git config --global user.name "🤖 hotfix[bot]2022"
       - name: 🔖 Bump version 
         id: bump 
         run: |
@@ -26,15 +26,17 @@ jobs:
           HOTFIX=${{ steps.bump.outputs.HOTFIX }}
           git checkout -b $HOTFIX
           git push -u origin $HOTFIX
-      # - name: 🧐 Submit pull request
-      #   id: pr
-      #   uses: repo-sync/pull-request@v2
-      #   with:
-      #     source_branch: ${{ steps.bump.outputs.HOTFIX }}
-      #     destination_branch: "main"
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     pr_label: "hotfix"
-      #     pr_title: " 🔖 ${{ steps.bump.outputs.HOTFIX }} 🚑"
-      #     pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+      - name: 🧐 Submit pull request
+        id: pr
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ steps.bump.outputs.HOTFIX }}
+          destination_branch: "main"
+          pr_label: "hotfix"
+          pr_title: " 🔖 ${{ steps.bump.outputs.HOTFIX }} 🚑"
+          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
+          github_token: ${{ secrets.GH_PA_TOKEN }}
+          # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
   hotfix: 
     uses: ./.github/workflows/build.yml
