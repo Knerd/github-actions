@@ -8,8 +8,6 @@ on:
       - "release/**"
       - "hotfix/**"
   pull_request: 
-    types:
-      - opened
     branches:
       - main
       - develop
