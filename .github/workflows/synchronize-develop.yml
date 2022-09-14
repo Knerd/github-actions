@@ -1,9 +1,10 @@
 name: 🤖⏩ Synchronize develop 
 on:
-  workflow_run:
-    workflows: ['🤖🏭 Build']
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ['🤖🏭 Build']
+  #   types:
+  #     - completed
+  workflow_call:
   workflow_dispatch:
     
 jobs:
@@ -23,3 +24,8 @@ jobs:
         git checkout develop
         git merge origin/main --ff-only || git merge origin/main
         git push origin develop 
+
+  deploy: 
+    needs: synchronize-develop 
+    uses: ./.github/workflows/deploy-staging.yml
+    secrets: inherit

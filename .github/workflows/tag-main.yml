@@ -34,6 +34,11 @@ jobs:
     uses: ./.github/workflows/announce-release.yml
     secrets: inherit
 
+  sync-dev: 
+    needs: announce-release 
+    uses: ./.github/workflows/synchronize-develop.yml
+    secrets: inherit
+
   publish: 
     needs: announce-release 
     uses: ./.github/workflows/publish.yml
@@ -41,6 +46,6 @@ jobs:
 
   deploy: 
     needs: publish 
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy-prod.yml
     secrets: inherit
 
