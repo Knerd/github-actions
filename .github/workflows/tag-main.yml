@@ -35,7 +35,7 @@ jobs:
     secrets: inherit
 
   publish: 
-    needs: tag 
+    needs: announce-release 
     uses: ./.github/workflows/publish.yml
     secrets: inherit
 
