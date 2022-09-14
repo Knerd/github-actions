@@ -7,10 +7,10 @@ on:
       - develop
       - "release/**"
       - "hotfix/**"
-  pull_request: 
-    branches:
-      - main
-      - develop
+  # pull_request: 
+  #   branches:
+  #     - main
+  #     - develop
   workflow_call:
   workflow_dispatch:
 
