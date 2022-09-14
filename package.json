@@ -1,6 +1,6 @@
 {
   "name": "@majora-d/workflows",
-  "version": "0.39.1",
+  "version": "0.39.2",
   "description": "Sandbox for actions",
   "main": "src/index.js",
   "scripts": {
