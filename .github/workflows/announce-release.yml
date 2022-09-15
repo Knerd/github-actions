@@ -20,10 +20,15 @@ jobs:
           git checkout main
           VERSION=$(node -p "require('./package.json').version")
           echo "::set-output name=VERSION::$VERSION" 
+      - name: 🆕 Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name:  📣 Create GitHub release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "release.tar.gz"
           tag: v${{ steps.version.outputs.VERSION }}
-          body: ${{ steps.tag-data.outputs.git-tag-annotation }}
+          body: ${{steps.github_release.outputs.changelog}} ${{ steps.tag-data.outputs.git-tag-annotation }}
           token: ${{ secrets.GITHUB_TOKEN }}
