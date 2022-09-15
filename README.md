@@ -1,5 +1,5 @@
 # git flow - workflows
-The actions in this repo were setup to match a basic git flow as follows:
+The actions in this repo are setup to match a basic git flow as follows:
 ```mermaid
 flowchart TB
 
