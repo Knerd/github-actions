@@ -1,6 +1,9 @@
 name: 👆🚑 Dispatch hotfix branch
 
 on:
+  push:
+    branches:
+      - hotfix 
   workflow_dispatch:
 
 jobs:

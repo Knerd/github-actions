@@ -6,6 +6,9 @@ on:
 
 jobs:
   deploy-prod:
+    environment:
+      name: prod
+      url: "https://www.example.com"
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Checkout main branch 
