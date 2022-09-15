@@ -7,7 +7,7 @@ on:
 jobs:
   deploy-staging:
     environment:
-      name: staging 
+      name: STAGING 
       url: "https://staging.example.com"
     runs-on: ubuntu-latest
     steps:

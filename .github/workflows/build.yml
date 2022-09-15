@@ -1,12 +1,6 @@
 name: 🤖🏭 Build
 
 on: 
-  push: 
-    branches:
-      - main
-      - develop
-      # - "release/**"
-      # - "hotfix/**"
   pull_request: 
     branches:
       - main
