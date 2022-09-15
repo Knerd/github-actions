@@ -30,34 +30,34 @@ H("hotfix v1.0.1")
 8. PR's are automatically created when pushing branches with a prefix of `feature/` or `bugfix/`
 9. There are two dispatchable workflows that can be used to initiate a `hotfix/` or `release/`
 
-The workflows:
+### The workflows:
 - 🤖📣 Announce Release
 	- Creates a release from the tag matching the version found in package.json 
 - 🤖🏭 Build
 	- Runs `npm ci` , `npm run test` , and `npm run build`
-- changelog
+- 🆕 Changelog CI
 	- Generates a changelog
-- deploy-prod
+- 🤖🚀 Deploy Production 🎬
 	- Deploy to production
-- deploy-staging
+- 🤖🚀 Deploy Staging 🧪
 	- Deploy to staging
-- dispatch-hotfix
+- 👆🚑 Dispatch hotfix branch
 	- Dispatch `hotfix/` branch and auto bump `patch` number
-- dispatch-next-increment
+- 👆🔖 Dispatch next minor release
 	- Dispatch `release/` branch and auto bump `minor` number
-- dispatch-next-major
+- 👆🔖 Dispatch next major release
 	- Dispatch `release/` branch and auto bump `major` number
-- pages
-- pr-bugfix
+- 🤖🐛 [PR] bugfix > develop
 	- Automatically create PR to `develop` branch when pushing `bugfix/` branch
-- pr-feature
+- 🤖✨ [PR] feature > develop
 	- Automatically create PR to `develop` branch when pushing `feature/` branch
-- publish
+- 🤖📦 Publish Release
 	- Runs `npm ci`, `npm run build`, and `npm publish`
-- synchronize-develop
+- 🤖⏩ Synchronize develop
 	- Keeps `develop` branch in-sync with all updates to `main`
-- tag-main
+- 🤖🔖 Tag main
 	- Tag Repo using `version` found in `package.json`
 	- Announce Release from same tag
 	- Sync Dev - Deploy to stagin
 	- Deploy to Prod
+
