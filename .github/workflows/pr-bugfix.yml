@@ -7,6 +7,15 @@ on:
 
   workflow_dispatch:
 
+# Environment variables available to all jobs and steps in this workflow
+env:
+  PR_LABEL: "bugfix"
+  PR_PREFIX: "🐛 Bugfix:"
+  PR_TEMPLATE: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
+  GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
+  # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
+  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
@@ -18,10 +27,8 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: "develop"
-          pr_label: "bugfix"
-          pr_title: "🐛 Bugfix: ${{ github.event.head_commit.message }}"
-          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"   # Path to pull request template, requires pr_title to be set, excludes pr_body
+          pr_label: ${{ env.PR_LABEL }} 
+          pr_title: "${{ env.PR_PREFIX }} ${{ github.event.head_commit.message }}"
+          pr_template: ${{ env.PR_TEMPLATE }} 
           pr_draft: true
-          github_token: ${{ secrets.GH_PA_TOKEN }}
-          # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ env.GITHUB_TOKEN }} 

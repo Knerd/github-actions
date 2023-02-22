@@ -6,6 +6,14 @@ on:
       - hotfix 
   workflow_dispatch:
 
+# Environment variables available to all jobs and steps in this workflow
+env:
+  USER_EMAIL: "bot+202X@myorg.com"
+  USER_NAME: "🤖 workflows[bot]2022"
+  GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
+  # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
+  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   dispatch-branch:
     runs-on: ubuntu-latest
@@ -13,11 +21,11 @@ jobs:
       - name: 🏗 Check out develop branch 
         uses: actions/checkout@v3
         with:
-          ref: 'main'
+          ref: $default-branch
       - name: 🔧 Configure git
         run: | 
-          git config --global user.email "devops+bot@muuvlabs.com"
-          git config --global user.name "🤖 hotfix[bot]2022"
+          git config --global user.email ${{ env.USER_EMAIL }}
+          git config --global user.name "${{ env.USER_NAME }}" 
       - name: 🔖 Bump version 
         id: bump 
         run: |
@@ -34,10 +42,8 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           source_branch: ${{ steps.bump.outputs.HOTFIX }}
-          destination_branch: "main"
+          destination_branch: $default-branch
           pr_label: "hotfix"
           pr_title: "${{ steps.bump.outputs.HOTFIX }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
-          github_token: ${{ secrets.GH_PA_TOKEN }}
-          # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ env.GITHUB_TOKEN }} 
