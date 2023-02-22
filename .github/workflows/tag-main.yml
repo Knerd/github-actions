@@ -1,11 +1,15 @@
-name: 🤖🔖 Tag main 
+name: 🤖🔖 Tag -> 📣 Release -> ⏩ Sync -> 📦Publish -> 🚀 Deploy
 
 on:
   push:
     branches:
-      - "main"
-
+      - $default-branch
   workflow_dispatch:
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  USER_EMAIL: "bot+202X@myorg.com"
+  USER_NAME: "🤖 workflows[bot]2022"
 
 jobs:
   tag:
@@ -18,8 +22,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: 🔧 Configure git
         run: | 
-          git config --global user.email "devops+bot2022@muuvlabs.com"
-          git config --global user.name "🤖 workflows[bot]2022"
+          git config --global user.email ${{ env.USER_EMAIL }}
+          git config --global user.name "${{ env.USER_NAME }}" 
         env: 
           GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: 🔖 Tag 

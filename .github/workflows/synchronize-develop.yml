@@ -2,7 +2,13 @@ name: 🤖⏩ Synchronize develop
 on:
   workflow_call:
   workflow_dispatch:
-    
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  USER_EMAIL: "bot+202X@myorg.com"
+  USER_NAME: "🤖 workflows[bot]2022"
+  DEV_BRANCH: "develop"
+
 jobs:
   synchronize-develop:
     runs-on: ubuntu-latest
@@ -14,12 +20,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-        git config --global user.email "devops+bot2022@muuvlabs.com"
-        git config --global user.name "🤖 workflows[bot]2022"
-        git fetch origin develop 
-        git checkout develop
-        git merge origin/main --ff-only || git merge origin/main
-        git push origin develop 
+        git config --global user.email ${{ env.USER_EMAIL }} 
+        git config --global user.name "${{ env.USER_NAME }}"
+        git fetch origin ${{ env.DEV_BRANCH }} 
+        git checkout ${{ env.DEV_BRANCH }}
+        git merge origin/${{ github.repository.default_branch }} --ff-only || git merge origin/${{ github.repository.default_branch }}
+        git push origin ${{ env.DEV_BRANCH }} 
 
   deploy: 
     needs: synchronize-develop 
