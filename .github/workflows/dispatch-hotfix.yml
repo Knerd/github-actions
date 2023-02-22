@@ -8,6 +8,7 @@ on:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
+  DEFAULT_BRANCH: $default-branch
   USER_EMAIL: "bot+202X@myorg.com"
   USER_NAME: "🤖 workflows[bot]2022"
   GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
@@ -30,6 +31,7 @@ jobs:
         id: bump 
         run: |
           npm version patch
+          echo Default Branch: ${{ env.DEFAULT_BRANCH }}
           VERSION=$(node -p "require('./package.json').version")
           echo "::set-output name=HOTFIX::hotfix/$VERSION" 
       - name: 🚑 Create hotfix branch 
@@ -42,7 +44,7 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           source_branch: ${{ steps.bump.outputs.HOTFIX }}
-          destination_branch: $default-branch
+          destination_branch: ${{ env.DEFAULT_BRANCH }} 
           pr_label: "hotfix"
           pr_title: "${{ steps.bump.outputs.HOTFIX }} 🚑"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
