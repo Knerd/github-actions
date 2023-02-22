@@ -4,6 +4,7 @@ on:
   pull_request: 
     branches:
       - $default-branch
+      - main
       - develop
   workflow_call:
   workflow_dispatch:
