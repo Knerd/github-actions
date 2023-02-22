@@ -3,7 +3,7 @@ name: 🤖🏭 Build
 on: 
   pull_request: 
     branches:
-      - main
+      - $default-branch
       - develop
   workflow_call:
   workflow_dispatch:

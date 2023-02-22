@@ -6,6 +6,12 @@ on:
   release:
     types: [published]
 
+# Environment variables available to all jobs and steps in this workflow
+env:
+  REGISTRY: "npm.pkg.github.com"
+  SCOPE: "@knerd" 
+  TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   publish-package:
     runs-on: ubuntu-latest
@@ -16,18 +22,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: "@knerd"
+          registry-url: "https://${{ env.REGISTRY }}/" 
+          scope: ${{ env.SCOPE }}
       - name: 📦 Install dependencies 
         run: npm ci 
       - name: 🏭 Build Project
         run: |
-          echo '//npm.pkg.github.com/:_authToken=${NPM_AUTH_TOKEN}' >> .npmrc
+          echo '//${ { env.REGISTRY }}/:_authToken=${NPM_AUTH_TOKEN}' >> .npmrc
           npm run build
       - name: 📦 Publish
         uses: JS-DevTools/npm-publish@v1
         with:
-          token: ${{ secrets.NPM_TOKEN }}
-          registry: https://npm.pkg.github.com/
+          token: ${{ env.TOKEN }} 
+          registry: "https://${{ env.REGISTRY }}/"
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ env.TOKEN }}
