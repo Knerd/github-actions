@@ -4,18 +4,22 @@ on:
   workflow_call:
   workflow_dispatch:
 
+# Environment variables available to all jobs and steps in this workflow
+env:
+  URL: "https://www.example.com"
+
 jobs:
   deploy-prod:
     environment:
       name: PRODUCTION 
-      url: "https://www.example.com"
+      url: ${{ env.URL }} 
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Checkout main branch 
         uses: actions/checkout@v3
       - name: 🔐 Connect to environement 
         run: |
-          echo "Connect to Production / Staging server"
+          echo "Connect to Production server"
       - name: 🚀 Deploy latest code 
         run: |
           echo "Run deployment code..."
