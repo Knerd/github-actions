@@ -3,37 +3,33 @@ The actions in this repo are setup to match a basic git flow as follows:
 ```mermaid
 flowchart TB
 
-
 A-->H-->A
 D-->F-->D
 D-->B-->D
 D-->R
 R-->A-->D
 
-D("develop")
-R("release v1.1.0")
-F("feature")
-B("bugfix")
-A("main v1.0.0")
-H("hotfix v1.0.1")
-
-
-
+D("🧑‍💻 develop")
+R("🔖 release v1.1.0")
+F("✨ feature")
+B("🐛 bugfix")
+A["🎬 $default-branch v1.0.0"]
+H("🚑 hotfix v1.0.1")
 ```
-1. The `main` branch houses and matches the latest release and PRODUCTION code.
-2. Hotfixes are created from the `main` branch and merged back into the `main` branch.
-3. Updates to the `main` branch are synced into `develop`.
-4. `feature/` & `bugfix/` branch from `develop` and are merged back into `develop`
-5. Releases are made from the `develop` branch, and upon passing QA are merged into `main`
-6. Updates to the `main` branch are tagged, released, published, and deployed.
-7. All version bumping is done automatically by the actions, aka 🤖 workflow[bot]
-8. PR's are automatically created when pushing branches with a prefix of `feature/` or `bugfix/`
-9. There are two dispatchable workflows that can be used to initiate a `hotfix/` or `release/`
-10. When using the two workflows above, they too will create PR's to be merged into `main` 
+1. The 🎬 `$default-branch` branch matches the latest 🔖`release` and **PRODUCTION** 🎬 code 1:1
+2. Hotfixes are created from the `**$default-branch**` branch and merged back into the `**$default-branch**` branch.
+3. All Updates to the `**$default-branch**` branch are auto-synced into `**develop`** via workflow 🤖
+4. `feature/` & `bugfix/` branch from `develop` branch and get merged into `develop`
+5. All 🔖releases are made from the 🧑‍💻 `develop` branch and get deployed to STAGING 🧪
+6. Once 🧑‍🔧 QA passes the `release` it's merged into `$default-branch`
+7. Updates to the `$default-branch` branch are 🔖 “tagged”, 📣 “released”, and 📦 “published” on GitHub and then deployed where applicable to **PRODUCTION** 🎬
+8. All version bumping is done automatically through the actions
+9. Auto-create PRs by pushing branches with a prefix of ✨`feature/` or 🐛 `bugfix/`
+10. There are two manual workflows that are used to initiate a 🚑`hotfix/` or 🔖`release/`
 
 ### The workflows:
 - 🤖📣 Announce Release
-	- Creates a release from the tag matching the version found in package.json 
+	- Creates a "release" post on github from the tag matching the version found in package.json 
 - 🤖🏭 Build
 	- Runs `npm ci` , `npm run test` , and `npm run build`
 - 🆕 Changelog CI
@@ -55,8 +51,8 @@ H("hotfix v1.0.1")
 - 🤖📦 Publish Release
 	- Runs `npm ci`, `npm run build`, and `npm publish`
 - 🤖⏩ Synchronize develop
-	- Keeps `develop` branch in-sync with all updates to `main`
-- 🤖🔖 Tag main
+	- Keeps `develop` branch in-sync with all updates to `$default-branch`
+- 🤖🔖 Tag $default-branch
 	- Tag Repo using `version` found in `package.json`
 	- Announce Release from same tag
 	- Sync Dev - Deploy to stagin
