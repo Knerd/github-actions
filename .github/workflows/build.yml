@@ -1,7 +1,6 @@
 name: 🤖🏭 Build
 
 on: 
-  workflow_call:
   workflow_dispatch:
   pull_request: 
     branches:
@@ -18,7 +17,9 @@ jobs:
 
     steps:
       - name: 🏗 Checkout branch 
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
       - name: 📦 Install Packages 
         run: npm ci 
       - name: 🩻 Test 
