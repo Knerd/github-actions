@@ -23,9 +23,9 @@ subgraph "🎁 Product"
     subgraph release ["📢 Release Process"]
         direction TB
 
-        subgraph repo ["Github main/ develop"]
+        subgraph repo ["😺 GH workflow"]
             direction TB
-            A{{"🌳 main v1.0.0"}}
+            A{{"🌳 main"}}
             tag>"🤖🔖 Tag -> 📣 Release -> ⏩ Sync -> 🚀 Deploy"]
         end
         subgraph "🛎️ Manual Triggers"
@@ -33,29 +33,29 @@ subgraph "🎁 Product"
             nR[/"👆🔖 Dispatch next release"/]
         end
            
-        subgraph automated["Auto bump version"]
+        subgraph automated["🤖 Auto bump & ✂️ branch"]
             Ab{{"🌳 main v1.0.0"}}
-            H>"♨️ hotfix/v1.x.1"] 
-            Db{{"🌿 develop"}} 
+            H>"♨️ hotfix/v1.0.1"] 
+            Db{{"🌿 develop v1.0.0"}} 
             R>"🔖 release/v1.1.0"]    
 
             Hf 
             ==>
             Ab
-            =="✂️"==>
+            =="🤖✂️ npm version patch"==>
             H
 
             nR 
             ==>
             Db
-            =="✂️"==>
+            =="🤖✂️ npm version minor"==>
             R
         end
 
     end
     direction TB
      
-    subgraph develop ["🚧 Development"]
+    subgraph develop ["🚧 Development Process"]
         D{{"🌿 develop"}} 
         =="👨‍💻 git checkout -b"==>
         FB>"✨ feature/🐛 bugfix/"]
@@ -73,7 +73,7 @@ subgraph "🎁 Product"
    
     
 	
- subgraph deploy ["🚀 Deployments"]
+ subgraph deploy ["🚀 Deployment Process"]
         direction LR
         S((("STAGE 🧪")))
 
@@ -85,7 +85,7 @@ subgraph "🎁 Product"
             S
             T
         end
-        subgraph PROD
+        subgraph "PROD 🎬"
             direction LR
             P((("PROD 🎬"))) 
              BT("🐛 New Ticket")
