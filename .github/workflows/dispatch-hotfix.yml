@@ -1,4 +1,4 @@
-name: _👆♨️ Dispatch hotfix branch
+name: .👆♨️ Dispatch hotfix branch
 
 on:
   workflow_dispatch:
@@ -43,7 +43,7 @@ jobs:
         with:
           source_branch: ${{ steps.bump.outputs.HOTFIX }}
           destination_branch: main
-          pr_label: "hotfix"
+          pr_label: "♨️ hotfix"
           pr_title: "${{ steps.bump.outputs.HOTFIX }} ♨️"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
           github_token: ${{ env.GITHUB_TOKEN }} 
