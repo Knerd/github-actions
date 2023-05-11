@@ -1,4 +1,4 @@
-name: 👆🚑 Dispatch hotfix branch
+name: 👆♨️ Dispatch hotfix branch
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
           npm version patch
           VERSION=$(node -p "require('./package.json').version")
           echo "::set-output name=HOTFIX::hotfix/$VERSION" 
-      - name: 🚑 Create hotfix branch 
+      - name: ♨️ Create hotfix branch 
         run: |
           HOTFIX=${{ steps.bump.outputs.HOTFIX }}
           git checkout -b $HOTFIX
@@ -44,6 +44,6 @@ jobs:
           source_branch: ${{ steps.bump.outputs.HOTFIX }}
           destination_branch: $default-branch
           pr_label: "hotfix"
-          pr_title: "${{ steps.bump.outputs.HOTFIX }} 🚑"
+          pr_title: "${{ steps.bump.outputs.HOTFIX }} ♨️"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
           github_token: ${{ env.GITHUB_TOKEN }} 
