@@ -14,3 +14,8 @@ jobs:
         uses: knerd/sync-dev-action@971b43a5da0a92d20bcaf95bfdf68b0f3e1cc111
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy: 
+    needs: synchronize-dev 
+    uses: ./.github/workflows/deploy-stage.yml
+    secrets: inherit
