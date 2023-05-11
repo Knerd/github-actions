@@ -10,7 +10,7 @@ on:
 env:
   REGISTRY: "npm.pkg.github.com"
   SCOPE: "@knerd" 
-  TOKEN: ${{ secrets.NPM_TOKEN }}
+  TOKEN: ${{ secrets.GH_PA_TOKEN }}
 
 jobs:
   publish-package:
