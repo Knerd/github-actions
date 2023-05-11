@@ -1,18 +1,18 @@
-name: 👆🚑 Dispatch hotfix branch
+name: 👆♨️ Dispatch hotfix branch
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - hotfix 
-  workflow_dispatch:
+      - hotfix
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   USER_EMAIL: "bot+202X@myorg.com"
   USER_NAME: "🤖 workflows[bot]2022"
-  GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
+  # GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
   # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
-  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   dispatch-branch:
@@ -21,7 +21,7 @@ jobs:
       - name: 🏗 Check out develop branch 
         uses: actions/checkout@v3
         with:
-          ref: $default-branch
+          ref: main
       - name: 🔧 Configure git
         run: | 
           git config --global user.email ${{ env.USER_EMAIL }}
@@ -32,7 +32,7 @@ jobs:
           npm version patch
           VERSION=$(node -p "require('./package.json').version")
           echo "::set-output name=HOTFIX::hotfix/$VERSION" 
-      - name: 🚑 Create hotfix branch 
+      - name: ♨️ Create hotfix branch 
         run: |
           HOTFIX=${{ steps.bump.outputs.HOTFIX }}
           git checkout -b $HOTFIX
@@ -42,8 +42,8 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           source_branch: ${{ steps.bump.outputs.HOTFIX }}
-          destination_branch: $default-branch
+          destination_branch: main
           pr_label: "hotfix"
-          pr_title: "${{ steps.bump.outputs.HOTFIX }} 🚑"
+          pr_title: "${{ steps.bump.outputs.HOTFIX }} ♨️"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
           github_token: ${{ env.GITHUB_TOKEN }} 
