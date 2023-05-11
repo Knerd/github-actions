@@ -1,6 +1,6 @@
 {
   "name": "@knerd/workflows",
-  "version": "0.40.8",
+  "version": "0.40.9",
   "description": "Sandbox for actions",
   "main": "src/index.js",
   "scripts": {
