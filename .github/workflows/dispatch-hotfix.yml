@@ -10,9 +10,9 @@ on:
 env:
   USER_EMAIL: "bot+202X@myorg.com"
   USER_NAME: "🤖 workflows[bot]2022"
-  GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
+  # GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
   # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
-  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   dispatch-branch:
