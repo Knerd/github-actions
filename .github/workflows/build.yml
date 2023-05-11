@@ -1,12 +1,12 @@
 name: 🤖🏭 Build
 
 on: 
+  workflow_call:
+  workflow_dispatch:
   pull_request: 
     branches:
       - main
       - develop
-  workflow_call:
-  workflow_dispatch:
 
 jobs:
   build:
