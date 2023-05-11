@@ -6,44 +6,9 @@ on:
   #   # At 00:00 every Tuesday
   #   - cron: '0 0 * * TUE'
 
-# Environment variables available to all jobs and steps in this workflow
-env:
-  USER_EMAIL: "bot+202X@myorg.com"
-  USER_NAME: "🤖 workflows[bot]2022"
-  GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
-  # To disable the pull_request from triggering your other workflows, use GITHUB_TOKEN instead
-  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   dispatch-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: 🏗 Check out develop branch 
-        uses: actions/checkout@v3
-        with:
-          ref: 'develop'
-      - name: 🔧 Configure git
-        run: | 
-          git config --global user.email ${{ env.USER_EMAIL }}
-          git config --global user.name "${{ env.USER_NAME }}" 
-      - name: 🔖 Bump version 
-        id: bump 
-        run: | 
-          npm version minor
-          VERSION=$(node -p "require('./package.json').version")
-          echo "::set-output name=RELEASE::release/$VERSION" 
-      - name: 📦 Create release branch 
-        run: |
-          RELEASE=${{ steps.bump.outputs.RELEASE }}
-          git checkout -b $RELEASE
-          git push -u origin $RELEASE
-      - name: 🧐 Submit pull request
-        id: pr
-        uses: repo-sync/pull-request@v2
-        with:
-          source_branch: ${{ steps.bump.outputs.RELEASE }}
-          destination_branch: main
-          pr_label: "release"
-          pr_title: "${{ steps.bump.outputs.RELEASE }} 🔖"
-          pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  
-          github_token: ${{ env.GITHUB_TOKEN }} 
+      - name: 👆🔖 Dispatch Next Minor Release w/ PR
+        uses: knerd/pr-next-minor-release-action@v1
