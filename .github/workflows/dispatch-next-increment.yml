@@ -1,4 +1,4 @@
-name: 👆🔖 Dispatch next minor release 
+name: _👆🔖 Dispatch next minor release 
 
 on:
   workflow_dispatch:
