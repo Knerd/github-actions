@@ -17,7 +17,7 @@ jobs:
       - name: 🔖 Get version 
         id: version 
         run: |
-          git checkout $default-branch
+          git checkout main
           VERSION=$(node -p "require('./package.json').version")
           echo "::set-output name=VERSION::$VERSION" 
       - name: 🆕 Build Changelog
