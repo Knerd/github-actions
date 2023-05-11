@@ -1,10 +1,10 @@
 name: 👆♨️ Dispatch hotfix branch
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - "hotfix/**" 
-  workflow_dispatch:
+      - hotfix
 
 # Environment variables available to all jobs and steps in this workflow
 env:
