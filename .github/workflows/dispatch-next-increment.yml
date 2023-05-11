@@ -13,4 +13,4 @@ jobs:
       - name: 👆🔖 Dispatch Next Minor Release w/ PR
         uses: knerd/pr-next-minor-release-action@v1
         with: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
