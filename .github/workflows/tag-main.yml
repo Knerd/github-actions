@@ -1,37 +1,33 @@
-name: 🤖🔖 Tag -> 📣 Release -> ⏩ Sync -> 📦Publish -> 🚀 Deploy
+name: 🤖🔖 Tag > 📣 Release > ⏩ Sync > 📦Publish > 🚀 Deploy
 
 on:
   push:
     branches:
-      - $default-branch
+      - main
   workflow_dispatch:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   USER_EMAIL: "bot+202X@myorg.com"
   USER_NAME: "🤖 workflows[bot]2022"
+  GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   tag:
     runs-on: ubuntu-latest
-
     steps:
       - name: 🏗 Checkout main branch 
         uses: actions/checkout@v3
-        env: 
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: 🔧 Configure git
         run: | 
           git config --global user.email ${{ env.USER_EMAIL }}
           git config --global user.name "${{ env.USER_NAME }}" 
-        env: 
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: 🔖 Tag 
         run: |
           git tag v$(node -p "require('./package.json').version")
           git push --tags 
-        env: 
-          GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   announce-release: 
     needs: tag
@@ -52,4 +48,3 @@ jobs:
     needs: publish 
     uses: ./.github/workflows/deploy-prod.yml
     secrets: inherit
-

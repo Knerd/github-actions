@@ -1,33 +1,16 @@
-name: 🤖⏩ Synchronize develop 
+name: 🤖⏩ Synchronize develop
 on:
   workflow_call:
   workflow_dispatch:
-
-# Environment variables available to all jobs and steps in this workflow
-env:
-  USER_EMAIL: "bot+202X@myorg.com"
-  USER_NAME: "🤖 workflows[bot]2022"
-  DEV_BRANCH: "develop"
+  push:
+    branches:
+      - main
 
 jobs:
-  synchronize-develop:
+  synchronize-dev:
     runs-on: ubuntu-latest
     steps:
-    - name: 🏗 Checkout main
-      uses: actions/checkout@v1
-    - name: ⏩ Fast Forward develop
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-        git config --global user.email ${{ env.USER_EMAIL }} 
-        git config --global user.name "${{ env.USER_NAME }}"
-        git fetch origin ${{ env.DEV_BRANCH }} 
-        git checkout ${{ env.DEV_BRANCH }}
-        git merge origin/${{ github.repository.default_branch }} --ff-only || git merge origin/${{ github.repository.default_branch }}
-        git push origin ${{ env.DEV_BRANCH }} 
-
-  deploy: 
-    needs: synchronize-develop 
-    uses: ./.github/workflows/deploy-staging.yml
-    secrets: inherit
+      - name: 🤖⏩ Synchronize Dev Branch
+        uses: knerd/sync-dev-action@971b43a5da0a92d20bcaf95bfdf68b0f3e1cc111
+        with:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
