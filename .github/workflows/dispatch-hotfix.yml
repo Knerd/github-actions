@@ -21,7 +21,7 @@ jobs:
       - name: 🏗 Check out develop branch 
         uses: actions/checkout@v3
         with:
-          ref: $default-branch
+          ref: main
       - name: 🔧 Configure git
         run: | 
           git config --global user.email ${{ env.USER_EMAIL }}
@@ -42,7 +42,7 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           source_branch: ${{ steps.bump.outputs.HOTFIX }}
-          destination_branch: $default-branch
+          destination_branch: main
           pr_label: "hotfix"
           pr_title: "${{ steps.bump.outputs.HOTFIX }} ♨️"
           pr_template: ".github/PULL_REQUEST_TEMPLATE.md"  

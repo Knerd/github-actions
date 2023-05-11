@@ -89,13 +89,13 @@ subgraph "🎁 Product"
 
 end
 ```
-1. The 🎬 `$default-branch` branch matches the latest 🔖`release` and **PRODUCTION** 🎬 code 1:1
-2. Hotfixes are created from the `**$default-branch**` branch and merged back into the `**$default-branch**` branch.
-3. All Updates to the `**$default-branch**` branch are auto-synced into `**develop`** via workflow 🤖
+1. The 🎬 `main` branch matches the latest 🔖`release` and **PRODUCTION** 🎬 code 1:1
+2. Hotfixes are created from the `**main**` branch and merged back into the `**main**` branch.
+3. All Updates to the `**main**` branch are auto-synced into `**develop`** via workflow 🤖
 4. `feature/` & `bugfix/` branch from `develop` branch and get merged into `develop`
 5. All 🔖releases are made from the 🧑‍💻 `develop` branch and get deployed to STAGING 🧪
-6. Once 🧑‍🔧 QA passes the `release` it's merged into `$default-branch`
-7. Updates to the `$default-branch` branch are 🔖 “tagged”, 📣 “released”, and 📦 “published” on GitHub and then deployed where applicable to **PRODUCTION** 🎬
+6. Once 🧑‍🔧 QA passes the `release` it's merged into `main`
+7. Updates to the `main` branch are 🔖 “tagged”, 📣 “released”, and 📦 “published” on GitHub and then deployed where applicable to **PRODUCTION** 🎬
 8. All version bumping is done automatically through the actions
 9. Auto-create PRs by pushing branches with a prefix of ✨`feature/` or 🐛 `bugfix/`
 10. There are two manual workflows that are used to initiate a ♨️`hotfix/` or 🔖`release/`
@@ -124,8 +124,8 @@ end
 - 🤖📦 Publish Release
 	- Runs `npm ci`, `npm run build`, and `npm publish`
 - 🤖⏩ Synchronize develop
-	- Keeps `develop` branch in-sync with all updates to `$default-branch`
-- 🤖🔖 Tag $default-branch
+	- Keeps `develop` branch in-sync with all updates to `main`
+- 🤖🔖 Tag main
 	- Tag Repo using `version` found in `package.json`
 	- Announce Release from same tag
 	- Sync Dev - Deploy to stagin
