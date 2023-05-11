@@ -8,7 +8,6 @@ on:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
-  DEFAULT_BRANCH: $default-branch
   USER_EMAIL: "bot+202X@myorg.com"
   USER_NAME: "🤖 workflows[bot]2022"
   # GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
@@ -31,7 +30,6 @@ jobs:
         id: bump 
         run: |
           npm version patch
-          echo Default Branch: ${{ env.DEFAULT_BRANCH }}
           VERSION=$(node -p "require('./package.json').version")
           echo "::set-output name=HOTFIX::hotfix/$VERSION" 
       - name: ♨️ Create hotfix branch 
