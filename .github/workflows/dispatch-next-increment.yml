@@ -10,7 +10,10 @@ jobs:
   dispatch-branch:
     runs-on: ubuntu-latest
     steps:
-      - name: 👆🔖 Dispatch Next Minor Release w/ PR
-        uses: knerd/pr-next-minor-release-action@v1
+      - name: 🔖 Dispatch Next Minor Release w/ PR
+        uses: knerd/pr-npm-version-action@v1
         with: 
+          NPM_VERSION: minor
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_LABEL: 🔖 release
+          PR_ICON: 🔖
