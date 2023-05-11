@@ -1,10 +1,10 @@
 name: 🤖⏩ Synchronize develop
 on:
-  workflow_call:
-  workflow_dispatch:
   push:
     branches:
       - main
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
   synchronize-dev:
